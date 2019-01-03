@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../assets/jquery-3.3.1.min.js"></script>
+    <script src="../assets/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
+    <script src="../assets/jquery.toaster.js"></script>
+    <script src="../controllers/tao_lop_controller.js"></script>
+    <link rel="stylesheet" href="../assets/bootstrap-4.1.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <a href="#" class="navbar-branch">
+                <img src="../images/logo-black.png" alt="Logo" style="width:50px">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" 
+			data-target="#navbarResponsive">
+			<span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " href="./main.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Create</a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link active" href="./dangKyCho.html">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Connect</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="col-sm-12"><span>ma lop:</span><br><input type="text" id="MaLop" placeholder="Ma Lop"></div>
+                <div class="col-sm-12">
+                    <span>cau truc so do:</span><br>
+                    <input type="text" id="CauTruc" placeholder="Eg: 4 4 1">
+                </div>
+                <div class="col-sm-12"><span>so hang:</span><br><input type="text" id="Hang" placeholder="nhap so hang" value="9"></div>
+            </div>
+            <div class="col-md-9 row" id="SDL"></div>
+        </div>
+        <!-- <div class="row" id="SDL"></div> -->
+        <button id="taoSoDo" style="float:right">tao moi</button>
+    </div>
+</body>
+</html>
