@@ -36,5 +36,5 @@ CREATE table SinhVien(
     FOREIGN KEY (MaLop) REFERENCES Lop(MaLop),
     Ho char (100) not null,
     Ten char(100) not null,
-    MaViTri char(100) not null,
+    MaViTri char(100),
     SoNgayNghi int);
