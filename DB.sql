@@ -6,19 +6,6 @@ CREATE TABLE users (
 	email VARCHAR(50) NOT NULL,
 	fullname VARCHAR(50) NOT NULL,
 	createdate DATETIME NOT NULL,
-	is_block TINYINT(4) NOT NULL DEFAULT '0',
-	permision TINYINT(4) NOT NULL DEFAULT '0',
-	UNIQUE (email)
-);
-
-
-
-CREATE TABLE adminSystem (
-	adminName VARCHAR(50) PRIMARY KEY NOT NULL,
-	adminPass VARCHAR(50) NOT NULL,
-	email VARCHAR(50) NOT NULL,
-	createdate DATETIME NOT NULL,
-	is_block TINYINT(4) NOT NULL DEFAULT '0',
 	permision TINYINT(4) NOT NULL DEFAULT '0',
 	UNIQUE (email)
 );
@@ -37,13 +24,19 @@ CREATE table SinhVien(
     Ho char (100) not null,
     Ten char(100) not null,
     MaViTri char(100),
-    SoNgayNghi int);
+    SoNgayNghi int,
+	CONSTRAINT UC_SinhVien UNIQUE (MaLop,MaViTri)
+	);
 
 CREATE TABLE NgayNghi(
 	MaSV char (50) REFERENCES SinhVien(MaSV),
-	Ngay DATA,
+	Ngay DATETIME,
 	note CHAR(255) DEFAULT '',
 	PRIMARY KEY (MaSV,Ngay)
+);
+CREATE TABLE HeSo(
+	truNghi TINYINT(4) DEFAULT '-1',
+	cong TINYINT(4)
 );
 GO
 CREATE TRIGGER updatesl ON NgayNghi AFTER INSERT AS
@@ -52,8 +45,5 @@ BEGIN
 	set SoNgayNghi=SoNgayNghi+1
 	WHERE SinhVien.MaSv=INSTEAD.MaSV
 END
-CREATE TABLE HeSo(
-	truNghi int DEFAULT (-1),
-	cong int
-);
+
 
