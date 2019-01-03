@@ -23,8 +23,8 @@ CREATE table SinhVien(
     FOREIGN KEY (MaLop) REFERENCES Lop(MaLop),
     Ho char (100) not null,
     Ten char(100) not null,
-    MaViTri char(100),
-    SoNgayNghi int,
+    MaViTri char(100) DEFAULT '',
+    SoNgayNghi int DEFAULT '0',
 	CONSTRAINT UC_SinhVien UNIQUE (MaLop,MaViTri)
 	);
 
@@ -38,12 +38,11 @@ CREATE TABLE HeSo(
 	truNghi TINYINT(4) DEFAULT '-1',
 	cong TINYINT(4)
 );
-GO
-CREATE TRIGGER updatesl ON NgayNghi AFTER INSERT AS
-BEGIN
+
+CREATE TRIGGER updatesl AFTER INSERT ON ngaynghi
+FOR EACH ROW 
 	UPDATE SinhVien
 	set SoNgayNghi=SoNgayNghi+1
 	WHERE SinhVien.MaSv=INSTEAD.MaSV
-END
 
 
