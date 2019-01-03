@@ -1,22 +1,10 @@
 $(document).ready(function () {
-    $('#MaLop').change(function (e) { 
-        console.log($('#MaLop').val())
-        $.ajax({
-            type: "GET",
-            url: "../models/get_class.php",
-            data: {MaLop:$('#MaLop').val()},
-            dataType: "json",
-            success: function (data) {
-                console.log(data);
-            },
-            erro:function(){
-                $.toaster({ priority : 'danger', title : 'loi', message : 'xay ra loi'});
-            },
-        });
-        
-    });
-    
-    function showClass(SoDo){        
+    var MaSoDo='';
+    var html='';
+    var SoHang=9;
+    var SoDo=[];        
+    function showClass(){ 
+        html='';     
         var index=0;    
         SoDo.forEach(function(sl){    
             html+='<div class="cach"></div>';    
@@ -36,10 +24,29 @@ $(document).ready(function () {
             // alert($(e).attr("id"));
             console.log($(this).attr("id"));
             $(this).addClass('red');
-        });
-
-        
+        });        
     }
-    
+
+    $('#MaLop').change(function (e) { 
+        var MaLop=$('#MaLop').val()
+        $.ajax({
+            type: "GET",
+            url: "../models/get_class.php",
+            data: {MaLop:MaLop},
+            dataType: "text",
+            success: function (data) {
+                var jsonData=JSON.parse(data);
+                console.log (jsonData);
+                MaSoDo=jsonData['MaSoDo'];
+                SoDo=Array.from(MaSoDo);
+                SoHang=jsonData['SoHang'];
+                showClass();
+            },
+            erro:function(){
+                $.toaster({ priority : 'danger', title : 'loi', message : 'xay ra loi'});
+            },
+        });
+        
+    });
     
 });
