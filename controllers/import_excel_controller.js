@@ -39,7 +39,7 @@
 
 angular.module('app', ['ui.grid'])
 
-  .controller('MainCtrl', ['$scope', function ($scope,$http) {
+  .controller('MainCtrl', function ($scope, $http) {
     var vm = this;
     $scope.sql = 'demo';
     vm.gridOptions = {};
@@ -51,8 +51,8 @@ angular.module('app', ['ui.grid'])
     }
     function importExcel() {
       //tao sql
-      if($scope.MaLop==null) alert('ban chua nhap ma lop')
-      else{
+      if ($scope.MaLop == null) alert('ban chua nhap ma lop')
+      else {
         var sql = "INSERT INTO SinhVien (MaSV,Ho,Ten,MaLop) VALUES ";
         var table = vm.gridOptions.data;
         for (var row in table) {
@@ -60,28 +60,28 @@ angular.module('app', ['ui.grid'])
           sql += '(' + table[row]['msv'] + ",'" + table[row]['ho'] + "','" + table[row]['ten'] + "','" + $scope.MaLop + "')"
         }
         sql += ';';
-        console.log(sql);
-        var data={
-        	gSQL:sql
+
+        var data = {
+          gSQL: sql
         };
-        var url='../models/import_excel.php';
-        var config={ 
-        	headers:{
-        		'Content-Type': 'application/json' 
-        	}
+        var url = '../models/import_excel.php';
+        var config = {
+          headers: {
+            'Content-Type': 'application/json'
+          }
         };
-        $http.post(url,{gSQL:sql},config).then(function(data){
-        	console.log(data);
-        },function(data){
-        	console.log('Loi'+data);
+        $http.post(url, { gSQL: sql }, config).then(function (data) {
+          console.log(data);
+        }, function (data) {
+          console.log('Loi' + data);
         });
         $scope.error = function (e) {
-        	console.log(e);
+          console.log(e);
         }
       }
-        
+
     }
-  }])
+  })
 
   .directive("fileread", [function () {
     return {

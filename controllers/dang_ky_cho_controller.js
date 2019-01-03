@@ -2,7 +2,8 @@ $(document).ready(function () {
     var MaSoDo='';
     var html='';
     var SoHang=9;
-    var SoDo=[];        
+    var SoDo=[]; 
+    var MaLop='';       
     function showClass(){ 
         html='';     
         var index=0;    
@@ -47,15 +48,13 @@ $(document).ready(function () {
             $.ajax({
                 type: "GET",
                 url: "../models/get_student.php",
-                data: {MaSV:MaSV},
+                data: {MaSV:MaSV,MaLop:MaLop},
                 dataType: "text",
-                success: function (data) {
-                    var jsonData=JSON.parse(data);
-                    console.log (jsonData);
-                    MaSoDo=jsonData['MaSoDo'];
-                    SoDo=Array.from(MaSoDo);
-                    SoHang=jsonData['SoHang'];
-                    showClass();
+                success: function (response) {
+                    var jsonData=JSON.parse(response);
+                    console.log(jsonData)
+                    $('hr div .msv').html(response['MaSV']);
+                    $('hr div .name').html(response['Ho']+' '+response['Ten']);
                 },
                 erro:function(){
                     $.toaster({ priority : 'danger', title : 'loi', message : 'xay ra loi'});
@@ -66,16 +65,19 @@ $(document).ready(function () {
     }
 
     $('#MaLop').change(function (e) { 
-        var MaLop=$('#MaLop').val()
+        MaLop=$('#MaLop').val()
         $.ajax({
             type: "GET",
             url: "../models/get_class.php",
             data: {MaLop:MaLop},
             dataType: "text",
-            success: function (response) {
-                var jsonData=JSON.parse(response);
-                $('# .msv').html(response['MaSV']);
-                $('# .name').html(response['Ho']+' '+response['Ten']);
+            success: function (data) {
+                var jsonData=JSON.parse(data);
+                console.log (jsonData);
+                MaSoDo=jsonData['MaSoDo'];
+                SoDo=Array.from(MaSoDo);
+                SoHang=jsonData['SoHang'];
+                showClass();
             },
             erro:function(){
                 $.toaster({ priority : 'danger', title : 'loi', message : 'xay ra loi'});

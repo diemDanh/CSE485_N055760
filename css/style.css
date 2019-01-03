@@ -19,7 +19,9 @@
 .red{
     background-color: red;
 }
-
+nav{
+    margin-bottom: 5em;
+}
 .sv {
     margin-bottom: 3px;
     border-radius: 4px;
@@ -52,13 +54,6 @@
 .name{
     color: black;
 }
-.input-text{
-    margin-left: 10em;
-}
-body {
-    /* font-family: Verdana; */
-    padding: 20px;
-  }
   
   .grid {
     width: 100%;
