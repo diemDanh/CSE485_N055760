@@ -1,15 +1,17 @@
 <?php
     require('../config.php');
-    $getMaSV=$_GET['MaSV'];
-    $data='';
-    $sql='select * from SinhVien where MaSV="'.$getMaSV.'"';
+    $str='';
+    $getMaLop=$_GET['MaLop'];
+    mysqli_set_charset($conn,"utf8");
+    $sql='select * from SinhVien where MaLop="'.$getMaLop.'"';
     $result = mysqli_query($conn,$sql); 
-    $row=mysqli_fetch_assoc($result);
-    if($row==NULL){
-        // echo $sql;
-    }else{
-        // echo 'thanh cong';
-        echo json_encode($row);        
-    };
+    echo '[';
+    while($row =mysqli_fetch_assoc($result)){
+        // $str=$str."'".json_encode($row)."',";
+        echo json_encode($row);
+        
+    }
+    // echo $sql;
+    echo ']';
     mysqli_close($conn);
 ?>

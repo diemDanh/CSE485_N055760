@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,15 +13,15 @@
     <link rel="stylesheet" href="../css/style.css">
     <title>Document</title>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
         <div class="container-fluid">
             <a href="#" class="navbar-branch">
                 <img src="../images/logo-black.png" alt="Logo" style="width:50%">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" 
-			data-target="#navbarResponsive">
-			<span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
@@ -34,7 +35,7 @@
                         <a class="nav-link active" href="./dangKyCho.html">Register</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link" href="./import_excel.html">Import</a>
+                        <a class="nav-link" href="./import_excel.html">Import</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Connect</a>
@@ -52,14 +53,35 @@
                 <span>ma sinh vien &nbsp</span><input type="text" id="MaSV" placeholder="Ma sv">
             </div>
             <hr>
-            <div id="" class=" col-sm-2 sv"><div class="msv"></div><div class="name"></div></div>'
+            <div id="tg" class=" col-sm-2 sv" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="msv"></div>
+                <div class="name" id="name-tg" > <p draggable="true" ondragstart="drag(event)" id="drag1"></p> </div>
+            </div>'
         </div>
         <div class="row">
-            
+
         </div>
-        
+
         <div class="row reverse" id="SDL"></div>
         <!-- class="row reverse" -->
     </div>
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var dt = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(dt));
+            
+            // document.getElementById('name-tg').innerHTML('<p draggable="true" ondragstart="drag(event)" id="drag1"></p>');
+        }
+    </script>
 </body>
+
 </html>

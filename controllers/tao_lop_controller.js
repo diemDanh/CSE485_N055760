@@ -26,7 +26,7 @@ $(document).ready(function () {
             console.log($(this).attr("id"));
             $(this).addClass('red');
         });
-
+        jqtar
         $('#taoSoDo').click(function (e) { 
             $.ajax({
                 type: "POST",
@@ -34,9 +34,9 @@ $(document).ready(function () {
                 data: {MaSoDo:MaSoDo,SoHang:SoHang,MaLop:MaLop,UserName:'user1'},
                 dataType: "html",
                 success: function (data) {
-                    // if(data=='thanh cong')$.toaster({ priority : 'success', title : 'success', message : data});
-                    // else $.toaster({ priority : 'warning', title : 'warning', message :data});
-                    console.log(data);
+                    if(data=='thanh cong') $.toaster({ priority : 'success', title : 'success', message : data});
+                    else $.toaster({ priority : 'warning', title : 'warning', message :data});
+                    // console.log(data);
                 },
                 erro:function(){
                     $.toaster({ priority : 'danger', title : 'loi', message : 'xay ra loi'});

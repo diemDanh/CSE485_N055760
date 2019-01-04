@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    
     var MaSoDo='';
     var html='';
     var SoHang=9;
@@ -14,8 +15,7 @@ $(document).ready(function () {
                 html+='<div id="day'+index+'" class="col">';
                 for (let hang = 0; hang < SoHang; hang++) {
                     html+='<div id="day'+index+'-'+hang+
-                        '" class="sv" ondrop="drop(event)" ondragover="allowDrop(event)"><div class="msv"></div><div class="name">'
-                        +hang+'</div></div>';
+                        '" class="sv" ondrop="drop(event)" ondragover="allowDrop(event)"></div>';
                 }
                 html+='</div>';
             }        
@@ -29,32 +29,23 @@ $(document).ready(function () {
         //     $(this).addClass('red');
         // }); 
         //drag drop
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
         
-        function drag(ev) {
-            ev.dataTransfer.setData("text", ev.target.id);
-        }
-        
-        function drop(ev) {
-            ev.preventDefault();
-            var data = ev.dataTransfer.getData("text");
-            ev.target.appendChild(document.getElementById(data));
-        }
         //nhap ma
         $('#MaSV').change(function (e) { 
+            $("#tg .name").html('<p draggable="true" ondragstart="drag(event)" id="drag1"></p>');
             var MaSV=$('#MaSV').val();
             $.ajax({
                 type: "GET",
-                url: "../models/get_student.php",
+                url: "../models/studen_in_class.php",
                 data: {MaSV:MaSV,MaLop:MaLop},
                 dataType: "text",
                 success: function (response) {
                     var jsonData=JSON.parse(response);
                     console.log(jsonData)
-                    $('hr div .msv').html(response['MaSV']);
-                    $('hr div .name').html(response['Ho']+' '+response['Ten']);
+                    $('#tg .msv').html(jsonData['MaSV']);
+                    $('#drag1').html(jsonData['Ho']+' '+jsonData['Ten']);
+                    document.getElementById("drag1").id = jsonData['MaSV'];
+                    
                 },
                 erro:function(){
                     $.toaster({ priority : 'danger', title : 'loi', message : 'xay ra loi'});

@@ -1,7 +1,7 @@
 <?php
     require('../config.php');
     $getMaLop=$_GET['MaLop'];
-    $getSoHang=$_POST['MaSV'];
+    
     // $getCode=$_POST['Code'];
     $sql='select * from Lop where MaLop="'.$getMaLop.'"';
     $result = mysqli_query($conn,$sql); 
